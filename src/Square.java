@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * A class written to support the TicTacToe Game.
  *
@@ -16,6 +18,10 @@ public class Square {
     private int row;
     private int col;
     private boolean isWinningSquare;
+    private final int SQUARE_DIM = 100;
+    private final int FIRSTX = SQUARE_DIM;
+    private final int FIRSTY = SQUARE_DIM + 22;
+
 
     /**
      * Constructor to initialize one Square of the
@@ -29,6 +35,19 @@ public class Square {
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
+
+    }
+
+    public void draw(Graphics g, TicTacToeViewer view) {
+        int x = FIRSTX + (col * SQUARE_DIM);
+        int y = FIRSTY + (row * SQUARE_DIM);
+        g.drawRect(x, y, SQUARE_DIM, SQUARE_DIM);
+        if (isWinningSquare) {
+            g.setColor(Color.green);
+            g.fillRect(x, y, SQUARE_DIM, SQUARE_DIM);
+        }
+        // Draw X and Y inside the square
+
     }
 
     /******************** Getters and Setters ********************/
