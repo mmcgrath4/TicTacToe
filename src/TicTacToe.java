@@ -9,10 +9,10 @@
  * @author: Nandhini Namasivayam
  * @version: Jan 2023
  */
-
+import javax.swing.*;
 import java.util.Scanner;
 
-public class TicTacToe
+public class TicTacToe extends JFrame
 {
     /** Board Markers **/
     public static final String X_MARKER = "X";
@@ -25,6 +25,9 @@ public class TicTacToe
     public static final int DIAGONAL_RIGHT_WIN = 3;
     public static final int DIAGONAL_LEFT_WIN = 4;
 
+    private final int WINDOW_WIDTH = 500;
+    private final int WINDOW_HEIGHT = 500;
+
     /** Winning Stats **/
     private String winner;      // Provides the marker of the winner
     private int winDirection;   // Provides the direction of the win
@@ -34,6 +37,7 @@ public class TicTacToe
 
     private Square[][] board;
     private boolean isGameOver;
+    private TicTacToeViewer window;
 
     /**
      * Constructor which initialized the board with BLANKs.
@@ -49,6 +53,12 @@ public class TicTacToe
                 this.board[row][col] = new Square(row, col);
             }
         }
+
+        window = new TicTacToeViewer(board);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("TicTacToe");
+        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        this.setVisible(true);
 
         // Initialize winning stats variables
         this.isGameOver = false;
@@ -122,6 +132,7 @@ public class TicTacToe
         }
 
         this.printBoard();
+        window.repaint();
         this.isGameOver = true;
 
         // Determine if there was a winner

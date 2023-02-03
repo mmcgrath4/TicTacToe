@@ -47,7 +47,12 @@ public class Square {
             g.fillRect(x, y, SQUARE_DIM, SQUARE_DIM);
         }
         // Draw X and Y inside the square
-
+        if (marker.equals("O")) {
+            g.drawImage(view.getImages()[0],x - 20, y - 20, 40, 40, view);
+        }
+        else if (marker.equals("X")) {
+            g.drawImage(view.getImages()[1],x - 20, y - 20, 40, 40, view);
+        }
     }
 
     /******************** Getters and Setters ********************/
