@@ -25,8 +25,7 @@ public class TicTacToe extends JFrame
     public static final int DIAGONAL_RIGHT_WIN = 3;
     public static final int DIAGONAL_LEFT_WIN = 4;
 
-    private final int WINDOW_WIDTH = 500;
-    private final int WINDOW_HEIGHT = 500;
+
 
     /** Winning Stats **/
     private String winner;      // Provides the marker of the winner
@@ -54,11 +53,7 @@ public class TicTacToe extends JFrame
             }
         }
 
-        window = new TicTacToeViewer(board);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("TicTacToe");
-        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        this.setVisible(true);
+        window = new TicTacToeViewer(this);
 
         // Initialize winning stats variables
         this.isGameOver = false;
@@ -116,10 +111,12 @@ public class TicTacToe extends JFrame
         Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to Tic Tac Toe!");
+        window.repaint();
 
         // Loop until there is a winner or no more turns
         while(!this.checkWin() && this.checkTurn()) {
             this.printBoard();
+            window.repaint();
             System.out.println("Enter your Row Pick:" );
             int row = input.nextInt();
             System.out.println("Enter your Col Pick:" );
@@ -148,6 +145,7 @@ public class TicTacToe extends JFrame
                 System.out.println("X Wins!");
             }
         }
+        window.repaint();
     }
 
 

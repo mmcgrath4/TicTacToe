@@ -20,7 +20,7 @@ public class Square {
     private boolean isWinningSquare;
     private final int SQUARE_DIM = 100;
     private final int FIRSTX = SQUARE_DIM;
-    private final int FIRSTY = SQUARE_DIM + 22;
+    private final int FIRSTY = SQUARE_DIM;
 
 
     /**
@@ -41,17 +41,18 @@ public class Square {
     public void draw(Graphics g, TicTacToeViewer view) {
         int x = FIRSTX + (col * SQUARE_DIM);
         int y = FIRSTY + (row * SQUARE_DIM);
+        g.setColor(Color.BLACK);
         g.drawRect(x, y, SQUARE_DIM, SQUARE_DIM);
         if (isWinningSquare) {
             g.setColor(Color.green);
             g.fillRect(x, y, SQUARE_DIM, SQUARE_DIM);
         }
         // Draw X and Y inside the square
-        if (marker.equals("O")) {
-            g.drawImage(view.getImages()[0],x - 20, y - 20, 40, 40, view);
+        if (marker.equals(TicTacToe.O_MARKER)) {
+            g.drawImage(view.getImages()[0],x + 20, y + 20, 60, 60, view);
         }
-        else if (marker.equals("X")) {
-            g.drawImage(view.getImages()[1],x - 20, y - 20, 40, 40, view);
+        else if (marker.equals(TicTacToe.X_MARKER)) {
+            g.drawImage(view.getImages()[1],x + 20, y + 20, 60, 60, view);
         }
     }
 
